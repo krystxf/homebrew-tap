@@ -16,6 +16,8 @@ class PopMac < Formula
     app = prefix/"PopMac.app"
     (app/"Contents/MacOS").install "#{bin_path}/PopMac"
     (app/"Contents").install "Resources/Info.plist"
+    # Releases after 0.1.0 have an app icon.
+    (app/"Contents/Resources").install "Resources/AppIcon.icns" if File.exist?("Resources/AppIcon.icns")
     system "codesign", "--force", "--sign", "-", app
   end
 
