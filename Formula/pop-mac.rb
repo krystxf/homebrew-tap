@@ -2,7 +2,7 @@ class PopMac < Formula
   desc "Pop!_OS Shell tiling window manager for macOS"
   homepage "https://github.com/krystxf/pop_mac"
   url "https://github.com/krystxf/pop_mac/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "SHA256_PLACEHOLDER"
+  sha256 "5c6756856612d80946478c8c2303c2b21ae300000279b47d7c8572959252a808"
   license "GPL-3.0-only"
   head "https://github.com/krystxf/pop_mac.git", branch: "main"
 
@@ -43,8 +43,7 @@ class PopMac < Formula
   end
 
   test do
-    output = shell_output("#{prefix}/PopMac.app/Contents/MacOS/PopMac --diagnose")
-    assert_match "Accessibility trusted:", output
+    assert_match "Pop Mac", shell_output("#{prefix}/PopMac.app/Contents/MacOS/PopMac --version")
     system "codesign", "--verify", "--strict", prefix/"PopMac.app"
   end
 end
