@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  # Weekly, to catch formulae that break with a newer Xcode or macOS on the runners.
+  schedule:
+    - cron: "0 6 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  HOMEBREW_NO_AUTO_UPDATE: 1
+  HOMEBREW_NO_INSTALL_FROM_API: 1
+
+jobs:
+  style:
+    name: Style
+    runs-on: macos-latest
+    timeout-minutes: 15
+    steps:
+      # Checks out this repository as the krystxf/tap tap.
+      - uses: Homebrew/actions/setup-homebrew@main
+
+      - name: brew style
+        run: brew style krystxf/tap
+
+  formulae:
+    name: Audit and test
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - uses: Homebrew/actions/setup-homebrew@main
+
+      - name: Audit, install, and test every formula
+        run: |
+          set -euo pipefail
+          tap_dir="$(brew --repository krystxf/tap)"
+          for file in "$tap_dir"/Formula/*.rb; do
+            name="krystxf/tap/$(basename "$file" .rb)"
+            echo "::group::$name"
+            brew audit --strict --online "$name"
+            brew install --build-from-source "$name"
+            brew test "$name"
+            brew linkage --test "$name"
+            echo "::endgroup::"
+          done
