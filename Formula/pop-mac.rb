@@ -1,8 +1,8 @@
 class PopMac < Formula
   desc "Pop!_OS Shell tiling window manager for macOS"
   homepage "https://github.com/krystxf/pop_mac"
-  url "https://github.com/krystxf/pop_mac/archive/refs/tags/v0.4.0.tar.gz"
-  sha256 "6f53bada32648481dcf49404188dc2d13d76b16cd06b47017a905d925b854a33"
+  url "https://github.com/krystxf/pop_mac/archive/refs/tags/v0.4.1.tar.gz"
+  sha256 "5c7b51590b91a00fb4620f99c6b74eb40295a6c5a9701064c49a82a558f9cc47"
   license "GPL-3.0-only"
   head "https://github.com/krystxf/pop_mac.git", branch: "main"
 
