@@ -1,12 +1,12 @@
 # The Homebrew cask for Pop Mac. The release workflow fills in the version and
 # the checksum, and copies the result to Casks/pop-mac.rb in krystxf/homebrew-tap.
 cask "pop-mac" do
-  version "0.6.1"
-  sha256 "676bc0bf3a8ffbdba6c4eacddad3f9dbfcb8841cdf889287ac6ddc036ae9e904"
+  version "0.7.0"
+  sha256 "d7342a44390ea773127cd8f077c40d8016cfe595e1260898fada01cbc4a6bfc4"
 
   url "https://github.com/krystxf/pop_mac/releases/download/v#{version}/PopMac.zip"
   name "Pop Mac"
-  desc "Pop!_OS Shell tiling window manager for macOS"
+  desc "Pop!_OS Shell tiling window manager"
   homepage "https://github.com/krystxf/pop_mac"
 
   livecheck do
@@ -14,7 +14,7 @@ cask "pop-mac" do
     strategy :github_latest
   end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "PopMac.app"
 
