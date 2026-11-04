@@ -1,8 +1,8 @@
 # The Homebrew cask for Pop Mac. The release workflow fills in the version and
 # the checksum, and copies the result to Casks/pop-mac.rb in krystxf/homebrew-tap.
 cask "pop-mac" do
-  version "0.10.0"
-  sha256 "44a869f26ccbe384b11c13d153ed9a2da8d2656b925ff8f6255d28f324fd7a34"
+  version "0.10.1"
+  sha256 "073afe59a15c778036972ca24f0ab57625e6892ede758c5c21a3933410e3f9c2"
 
   url "https://github.com/krystxf/pop_mac/releases/download/v#{version}/PopMac.zip"
   name "Pop Mac"
